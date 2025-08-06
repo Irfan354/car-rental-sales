@@ -2,8 +2,12 @@ package com.arasmo.carrentalsales.carrentalsale_service.entity;
 
 import java.util.Set;
 
+import com.arasmo.carrentalsales.carrentalsale_service.enums.RoleType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,10 +30,8 @@ public class Role {
     @Column(name = "role_id")
     private Long id;
 
-    @NotBlank
-    @Size(max = 100)
-    @Column(nullable = false, length = 50)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
 
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     private Set<User> users ;

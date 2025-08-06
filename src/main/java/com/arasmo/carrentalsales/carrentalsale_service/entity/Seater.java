@@ -2,9 +2,13 @@ package com.arasmo.carrentalsales.carrentalsale_service.entity;
 
 import java.util.Set;
 
+import com.arasmo.carrentalsales.carrentalsale_service.enums.SeaterType;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,8 +31,9 @@ public class Seater {
     @Column(name = "seater_id")
     private Long id;
 
-    @Column(length = 20, nullable = false)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private SeaterType seaterType;
+
 
     @OneToMany(mappedBy = "seater", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Vehicle> vehicles;
